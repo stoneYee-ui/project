@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/projectCheck.js"></script>
+<script type="text/javascript" src="js/haValidChecker.js"></script>
+</head>
+<body>
+	<form name="loginForm" onsubmit="return loginCheck();"
+		action="login.do" method="post" th:fragment="login">
+		<ul id="loginTbl">
+			<li>
+				<input name="psm_id" autocomplete="off" maxlength="10" placeholder="아이디">
+			</li>
+			<li>
+				<input name="psm_pw" autocomplete="off" maxlength="10" placeholder="비밀번호" type="password">
+			</li>
+			<li class="login">
+				<button>로그인</button>
+				<a href="join.go">회원가입</a>
+			</li>
+		</ul>
+	</form>
+</body>
+</html>

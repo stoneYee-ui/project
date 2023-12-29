@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<link rel="stylesheet" href="css/setup.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/jquery.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script>
+	function goOrderDetail(no,name,price,num){
+		let inputData = document.getElementById("subnum").value;
+		location.href = "order.do?psppp_no=" + no + "&pspo_name=" + name+ "&pspo_price=" + price + "&pspo_num=" + inputData;
+	}
+</script>
+<body>
+	<header>
+        <div class="flex">
+            <a th:href="@{/}" id="logo">
+                <h1>쇼핑몰</h1>
+            </a>
+            <nav id="menu">
+				<a th:href="@{/order.go}" class="project">주문확인</a>
+                <a th:href="@{/product.go}" class="project">상품등록</a>
+                <div class="button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menuBox" th:insert="~{${loginPage} :: ${login}}">
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div id="page02" class="section">
+            <ul id="list">
+                <li th:each="p : ${products}">
+					<div class="img">
+						<img th:src="@{|/pic/${p.psp_photo}|}">
+					</div>
+                    <div class="title">
+                        <div class="name" th:text="${p.psp_name}"></div>
+                        <div class="price" th:text="${p.psp_price}"></div>
+                        <div class="num" th:text="${p.psp_num}"></div>
+                        <div class="calc">
+                            <input type="button" value="-" class="button minus">
+                            <input id="subnum" type="text" th:value="1" class="value">
+                            <input type="button" value="+" class="button plus">
+                        </div>
+                        <div class="sellbutton">
+							<button class="sell" th:onclick="goOrderDetail([[${p.psp_no }]], [[${p.psp_name }]], [[${p.psp_price }]]);">주문하기</button>
+						</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+</body>
+<script>
+    $(function(){
+        $("#menu .button").on("click",function(){
+            $("#menu").toggleClass("view");
+        });
+        $("#page02 li .minus").on("click",function(){
+            const val = $(this).next();
+            let num = val.val();
+            if(num <= 0 ){
+                alert("상품은 마이너스가 될수없습니다.");
+                return;
+            }
+            val.val(--num);
+        });
+        $("#page02 li .plus").on("click",function(){
+            const val = $(this).prev();
+            let num = val.val();
+            val.val(++num);
+
+        });
+    })
+</script>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="js/projectCheck.js"></script>
+<script type="text/javascript" src="js/projectMove.js"></script>
+<script type="text/javascript" src="js/haValidChecker.js"></script>
+<script type="text/javascript" src="js/jQuery.js"></script>
+<body>
+	<ul id="loginedTbl" th:fragment="logined">
+		<li class="name"th:text="|${name }님 환영합니다.|"></li>
+		<li>
+			<a th:href="@{/logout.do}">로그아웃</a>
+		</li>
+	</ul>
+</body>
+</html>
