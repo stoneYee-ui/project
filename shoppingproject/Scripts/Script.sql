@@ -34,14 +34,4 @@ SELECT * FROM project_shopping_order;
 DROP TABLE project_shopping_order;
 drop sequence project_shopping_order_seq;
 ----
-CREATE TABLE nov23_product(
-	p_no number(3) PRIMARY KEY,
-	p_name varchar2(10 char) NOT NULL,
-	p_price number(3) NOT NULL
-);
 
-CREATE SEQUENCE nov23_product_seq;
-
-INSERT INTO nov23_product values(nov23_product_seq.nextval, '볼펜', 500);
-
-SELECT * FROM nov23_product;
